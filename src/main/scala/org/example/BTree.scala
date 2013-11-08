@@ -1,27 +1,27 @@
 package org.example
 
 case class BTree(node: Node) {
-  def size(): Int = node.size
+  def size: Int = node.size
 
-  def max(): Int = node.max
+  def max: Int = node.max
 
-  def min(): Int = node.min
+  def min: Int = node.min
 
-  def sum(): Int = node.sum
+  def sum: Int = node.sum
 
-  def avg(): Int = node.sum / node.size
+  def avg: Int = node.sum / node.size
 
   def find(n: Int): Option[Node] = node.find(n)
 }
 
 trait Node {
-  def max(): Int
+  def max: Int
 
-  def min(): Int
+  def min: Int
 
-  def size(): Int
+  def size: Int
 
-  def sum(): Int
+  def sum: Int
   def find(n:Int): Option[Node]
 }
 
@@ -29,13 +29,13 @@ case class Branch(left: Node, mid: Int, right: Node) extends Node {
   require(left.max <= mid)
   require(mid <= right.min)
 
-  def max(): Int = right.max
+  def max: Int = right.max
 
-  def min(): Int = left.min
+  def min: Int = left.min
 
-  def size(): Int = right.size + 1 + left.size
+  def size: Int = right.size + 1 + left.size
 
-  def sum(): Int = right.sum + mid + left.sum
+  def sum: Int = right.sum + mid + left.sum
   def find(n:Int): Option[Node] = n match {
     case _ if n == mid => Some(this)
     case _ if n > mid => right.find(n)
@@ -45,13 +45,13 @@ case class Branch(left: Node, mid: Int, right: Node) extends Node {
 }
 
 case class Leaf(mid: Int) extends Node {
-  def max(): Int = mid
+  def max: Int = mid
 
-  def min(): Int = mid
+  def min: Int = mid
 
-  def size(): Int = 1
+  def size: Int = 1
 
-  def sum(): Int = mid
+  def sum: Int = mid
   def find(n:Int): Option[Node] = n match {
     case _ if n == mid => Some(this)
     case _ => None
