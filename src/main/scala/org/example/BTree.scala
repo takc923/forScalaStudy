@@ -52,8 +52,8 @@ case class Leaf(mid: Int) extends Node {
   def size: Int = 1
 
   def sum: Int = mid
-  def find(n:Int): Option[Node] = n match {
-    case _ if n == mid => Some(this)
+  def find(n:Int): Option[Node] = n compare mid match {
+    case 0 => Some(this)
     case _ => None
   }
 }
